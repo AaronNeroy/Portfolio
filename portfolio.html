@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>My Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0a0a0a;
+  --bg2:#111111;
+  --bg3:#1a1a1a;
+  --gold1:#b8860b;
+  --gold2:#ffd700;
+  --gold3:#fffacd;
+  --white:#f5f5f5;
+  --gray:#888;
+  --border:#222;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold1),var(--gold2));border-radius:3px;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;padding:1.2rem 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,10,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.logo{font-size:1.3rem;font-weight:700;background:linear-gradient(90deg,var(--gold1),var(--gold2),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .3s;}
+.nav-links a:hover{color:var(--gold2);}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 5%;position:relative;overflow:hidden;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,134,11,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(184,134,11,.07) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.hero-glow{position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(255,215,0,.08) 0%,transparent 70%);pointer-events:none;}
+.badge{display:inline-block;padding:.35rem 1rem;border:1px solid var(--gold1);border-radius:999px;font-size:.8rem;color:var(--gold2);margin-bottom:1.5rem;letter-spacing:.05em;}
+h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:700;line-height:1.1;margin-bottom:1rem;}
+h1 span{background:linear-gradient(90deg,var(--gold1),var(--gold2),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% auto;transition:background-position .4s ease;}
+h1 span:hover{animation:shimmerText 1.5s linear infinite;}
+@keyframes shimmerText{to{background-position:200% center;}}
+.subtitle{font-size:clamp(.95rem,2vw,1.2rem);color:var(--gray);max-width:540px;line-height:1.7;margin-bottom:2.5rem;}
+.cta-group{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+.btn{padding:.8rem 2rem;border-radius:8px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .3s;}
+.btn-primary{background:linear-gradient(135deg,var(--gold1),var(--gold2));color:#000;}
+.btn-primary:hover{opacity:.85;transform:translateY(-2px);}
+.btn-outline{background:transparent;border:1px solid var(--gold1);color:var(--gold2);}
+.btn-outline:hover{background:rgba(255,215,0,.08);transform:translateY(-2px);}
+.scroll-hint{position:absolute;bottom:2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--gray);font-size:.75rem;}
+.scroll-line{width:1px;height:50px;background:linear-gradient(var(--gold2),transparent);animation:scrollAnim 2s ease-in-out infinite;}
+@keyframes scrollAnim{0%,100%{opacity:.3;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.2);}}
+
+/* SECTIONS */
+section{padding:6rem 5%;}
+.section-label{font-size:.8rem;letter-spacing:.15em;color:var(--gold1);text-transform:uppercase;margin-bottom:.8rem;}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;margin-bottom:1rem;}
+.section-title span{background:linear-gradient(90deg,var(--gold1),var(--gold2),var(--gold3),var(--gold1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% auto;}
+.section-title span:hover{animation:shimmerText 1.5s linear infinite;}
+.section-divider{width:60px;height:3px;background:linear-gradient(90deg,var(--gold1),var(--gold2));border-radius:2px;margin-bottom:3rem;}
+
+/* ABOUT */
+#about{background:var(--bg2);}
+.about-grid{display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:center;}
+.about-photo{width:100%;aspect-ratio:1;border-radius:16px;background:var(--bg3);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:var(--gray);font-size:.85rem;position:relative;overflow:hidden;}
+.about-photo::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(184,134,11,.1),transparent);pointer-events:none;}
+.photo-icon{font-size:3rem;}
+.about-text p{color:var(--gray);line-height:1.8;margin-bottom:1.2rem;font-size:.95rem;}
+.about-tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem;}
+.tag{padding:.35rem .9rem;border-radius:999px;background:var(--bg3);border:1px solid transparent;font-size:.8rem;color:var(--gold2);position:relative;background-clip:padding-box;}
+.tag::before{content:'';position:absolute;inset:-1px;border-radius:999px;background:conic-gradient(from var(--angle,0deg),transparent 60%,var(--gold2) 80%,transparent 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;padding:1px;opacity:0;}
+.tag.animate-once::before{opacity:1;animation:spinOnce 1.2s linear forwards;}
+@keyframes spinOnce{from{--angle:0deg;}to{--angle:360deg;}}
+.resume-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.8rem;padding:.7rem 1.6rem;border-radius:8px;background:linear-gradient(135deg,var(--gold1),var(--gold2));color:#000;font-weight:600;font-size:.9rem;text-decoration:none;transition:all .3s;}
+.resume-btn:hover{opacity:.85;transform:translateY(-2px);}
+
+/* EXPERIENCE */
+#experience{background:var(--bg);}
+.timeline{position:relative;padding-left:2rem;}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(var(--gold1),var(--gold2),transparent);}
+.timeline-item{position:relative;margin-bottom:3rem;padding-left:2rem;}
+.timeline-dot{position:absolute;left:-2.45rem;top:.3rem;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--gold1),var(--gold2));box-shadow:0 0 12px rgba(255,215,0,.4);}
+.timeline-date{font-size:.8rem;color:var(--gold1);letter-spacing:.05em;margin-bottom:.4rem;}
+.timeline-role{font-size:1.15rem;font-weight:700;margin-bottom:.2rem;}
+.timeline-company{font-size:.9rem;color:var(--gold2);margin-bottom:.8rem;}
+.timeline-desc{color:var(--gray);font-size:.9rem;line-height:1.7;}
+.timeline-desc li{margin-bottom:.4rem;}
+.timeline-desc ul{padding-left:1.2rem;}
+
+/* PROJECTS */
+#projects{background:var(--bg2);}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+.card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:1.8rem;position:relative;overflow:hidden;transition:transform .3s,border-color .3s;}
+.card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(184,134,11,.06),transparent);pointer-events:none;}
+.card:hover{transform:translateY(-6px);border-color:var(--gold1);}
+.card-icon{font-size:2rem;margin-bottom:1rem;}
+.card-title{font-size:1.1rem;font-weight:700;margin-bottom:.6rem;}
+.card-desc{color:var(--gray);font-size:.875rem;line-height:1.7;margin-bottom:1.2rem;}
+.card-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.4rem;}
+.card-tag{padding:.2rem .7rem;border-radius:999px;background:rgba(255,215,0,.08);border:1px solid transparent;font-size:.75rem;color:var(--gold2);position:relative;background-clip:padding-box;}
+.card-tag::before{content:'';position:absolute;inset:-1px;border-radius:999px;background:conic-gradient(from var(--angle,0deg),transparent 60%,var(--gold2) 80%,transparent 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;padding:1px;opacity:0;}
+.card-tag.animate-once::before{opacity:1;animation:spinOnce 1.2s linear forwards;}
+.btn-outline{background:transparent;border:1px solid transparent;color:var(--gold2);position:relative;background-clip:padding-box;}
+.btn-outline::before{content:'';position:absolute;inset:-1px;border-radius:8px;background:conic-gradient(from var(--angle,0deg),transparent 60%,var(--gold2) 80%,transparent 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;padding:1px;opacity:0;}
+.btn-outline.animate-once::before{opacity:1;animation:spinOnce 1.2s linear forwards;}
+.badge{display:inline-block;padding:.35rem 1rem;border:1px solid transparent;border-radius:999px;font-size:.8rem;color:var(--gold2);margin-bottom:1.5rem;letter-spacing:.05em;position:relative;background-clip:padding-box;}
+.badge::before{content:'';position:absolute;inset:-1px;border-radius:999px;background:conic-gradient(from var(--angle,0deg),transparent 60%,var(--gold2) 80%,transparent 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;padding:1px;opacity:0;}
+.badge.animate-once::before{opacity:1;animation:spinOnce 1.2s linear forwards;}
+.resume-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.8rem;padding:.7rem 1.6rem;border-radius:8px;background:linear-gradient(135deg,var(--gold1),var(--gold2));color:#000;font-weight:600;font-size:.9rem;text-decoration:none;transition:all .3s;background-size:200% auto;}
+.resume-btn.animate-once{animation:shimmerText 1.2s linear forwards;}
+.btn-primary{background:linear-gradient(90deg,var(--gold1),var(--gold2),var(--gold3),var(--gold1));color:#000;background-size:300% auto;}
+.btn-primary.animate-once{animation:shimmerText 1.2s linear forwards;}
+.card-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--gold2);text-decoration:none;font-weight:600;transition:gap .2s;}
+.card-link:hover{gap:.7rem;}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 5%;text-align:center;}
+.footer-links{display:flex;justify-content:center;gap:2rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.footer-links a{color:var(--gray);text-decoration:none;font-size:.9rem;transition:color .3s;}
+.footer-links a:hover{color:var(--gold2);}
+.footer-copy{color:var(--border);font-size:.8rem;}
+
+/* FADE IN */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .about-grid{grid-template-columns:1fr;}
+  .about-photo{max-width:200px;margin:0 auto;}
+  .nav-links{gap:1rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">&lt;YourName /&gt;</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="badge">Open to Opportunities</div>
+  <h1>Building <span>Digital Experiences</span><br/>That Scale.</h1>
+  <p class="subtitle">IT professional specialising in web design & SaaS development. I craft clean, performant systems that solve real problems.</p>
+  <div class="cta-group">
+    <a href="#projects" class="btn btn-primary">View My Work</a>
+    <a href="#about" class="btn btn-outline">About Me</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="fade-in">
+    <div class="section-label">Who I Am</div>
+    <h2 class="section-title">About <span>Me</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="about-grid fade-in">
+    <div>
+      <div class="about-photo">
+        <div class="photo-icon">🧑‍💻</div>
+        <span>Your Photo Here</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <p>Hi, I'm <strong style="color:var(--white)">Your Name</strong> — an IT professional based in Singapore with a passion for building sleek web experiences and scalable SaaS products. I bridge the gap between design and engineering, delivering solutions that are as functional as they are beautiful.</p>
+      <p>With hands-on experience across the full stack, I thrive in fast-paced environments where I can own the product from concept to deployment. Whether it's architecting a multi-tenant SaaS platform or designing a pixel-perfect UI, I bring precision and creativity to every project.</p>
+      <p>When I'm not coding, you'll find me exploring new frameworks, contributing to open-source, or keeping up with the latest in cloud infrastructure.</p>
+      <div class="about-tags">
+        <span class="tag">React</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">AWS</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Docker</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">UI/UX Design</span>
+        <span class="tag">REST APIs</span>
+      </div>
+      <a href="#" class="resume-btn">⬇ Download Resume</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="fade-in">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Work <span>Experience</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="timeline fade-in">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">JAN 2023 – PRESENT</div>
+      <div class="timeline-role">Senior IT Engineer</div>
+      <div class="timeline-company">Company Name · Full-time</div>
+      <div class="timeline-desc">
+        <ul>
+          <li>Led development of a multi-tenant SaaS platform serving 10,000+ users, reducing churn by 18%.</li>
+          <li>Redesigned core UI components, improving user satisfaction scores by 32%.</li>
+          <li>Architected cloud infrastructure on AWS, cutting hosting costs by 40%.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">MAR 2021 – DEC 2022</div>
+      <div class="timeline-role">Web Developer</div>
+      <div class="timeline-company">Company Name · Full-time</div>
+      <div class="timeline-desc">
+        <ul>
+          <li>Built and maintained 12+ client websites using React and Next.js.</li>
+          <li>Integrated third-party APIs (Stripe, Twilio, SendGrid) into SaaS products.</li>
+          <li>Mentored 2 junior developers and led weekly code review sessions.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">JUN 2019 – FEB 2021</div>
+      <div class="timeline-role">IT Support Specialist</div>
+      <div class="timeline-company">Company Name · Full-time</div>
+      <div class="timeline-desc">
+        <ul>
+          <li>Managed IT infrastructure for 200+ staff across 3 office locations.</li>
+          <li>Developed internal tooling that automated 60% of routine support tasks.</li>
+          <li>Migrated on-premise systems to cloud, achieving 99.9% uptime.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="fade-in">
+    <div class="section-label">My Work</div>
+    <h2 class="section-title">Projects & <span>Portfolio</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="projects-grid fade-in">
+
+    <div class="card">
+      <div class="card-icon">🚀</div>
+      <div class="card-title">SaaS Dashboard Platform</div>
+      <div class="card-desc">A multi-tenant analytics dashboard with role-based access control, real-time data visualisation, and Stripe billing integration.</div>
+      <div class="card-tags">
+        <span class="card-tag">React</span>
+        <span class="card-tag">Node.js</span>
+        <span class="card-tag">PostgreSQL</span>
+        <span class="card-tag">Stripe</span>
+      </div>
+      <a href="#" class="card-link">View Project →</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <div class="card-title">E-Commerce UI Kit</div>
+      <div class="card-desc">A fully responsive, accessible component library built for modern e-commerce stores. Includes 40+ production-ready components.</div>
+      <div class="card-tags">
+        <span class="card-tag">TypeScript</span>
+        <span class="card-tag">Tailwind</span>
+        <span class="card-tag">Figma</span>
+      </div>
+      <a href="#" class="card-link">View Project →</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">☁️</div>
+      <div class="card-title">Cloud Infrastructure Toolkit</div>
+      <div class="card-desc">An open-source CLI tool for provisioning and managing AWS resources with one command. Used by 300+ developers on GitHub.</div>
+      <div class="card-tags">
+        <span class="card-tag">AWS</span>
+        <span class="card-tag">Python</span>
+        <span class="card-tag">Docker</span>
+        <span class="card-tag">Terraform</span>
+      </div>
+      <a href="#" class="card-link">View Project →</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🔐</div>
+      <div class="card-title">Auth & Identity Service</div>
+      <div class="card-desc">A plug-and-play authentication microservice with OAuth2, MFA, and JWT support — designed for rapid SaaS integration.</div>
+      <div class="card-tags">
+        <span class="card-tag">OAuth2</span>
+        <span class="card-tag">JWT</span>
+        <span class="card-tag">Redis</span>
+        <span class="card-tag">Express</span>
+      </div>
+      <a href="#" class="card-link">View Project →</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <div class="card-title">Internal Analytics Tool</div>
+      <div class="card-desc">Built for a fintech client — a real-time reporting tool pulling from multiple data sources with automated PDF exports.</div>
+      <div class="card-tags">
+        <span class="card-tag">Python</span>
+        <span class="card-tag">FastAPI</span>
+        <span class="card-tag">Chart.js</span>
+      </div>
+      <a href="#" class="card-link">View Project →</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <div class="card-title">Agency Website Redesign</div>
+      <div class="card-desc">Full redesign of a digital agency's web presence — boosted page speed score from 42 to 97 and increased conversions by 25%.</div>
+      <div class="card-tags">
+        <span class="card-tag">Next.js</span>
+        <span class="card-tag">Framer Motion</span>
+        <span class="card-tag">CMS</span>
+      </div>
+      <a href="#" class="card-link">View Project →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="#">LinkedIn</a>
+    <a href="#">GitHub</a>
+    <a href="#">Email</a>
+    <a href="#">Twitter / X</a>
+  </div>
+  <div class="footer-copy">© 2026 Your Name · Built with precision & caffeine ☕</div>
+</footer>
+
+<script>
+// Fade-in on scroll
+const fadeObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.12});
+document.querySelectorAll('.fade-in').forEach(el=>fadeObs.observe(el));
+
+// Animate-once: triggers on enter, resets on exit so it replays on re-entry
+const animEls = '.tag,.card-tag,.badge,.btn-outline,.btn-primary,.resume-btn,h1 span,.section-title span';
+const animObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.remove('animate-once');
+      void e.target.offsetWidth; // force reflow to restart animation
+      e.target.classList.add('animate-once');
+    } else {
+      e.target.classList.remove('animate-once');
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll(animEls).forEach(el=>animObs.observe(el));
+</script>
+</body>
+</html>
