@@ -20,48 +20,42 @@
 }
 html{scroll-behavior:smooth;}
 body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;}
-
-/* SCROLLBAR */
 ::-webkit-scrollbar{width:6px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold1),var(--gold2));border-radius:3px;}
-
-/* NAV */
 nav{position:fixed;top:0;width:100%;z-index:100;padding:1.2rem 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,10,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
 .logo{font-size:1.3rem;font-weight:700;background:linear-gradient(90deg,var(--gold1),var(--gold2),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
 .nav-links a{color:var(--gray);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .3s;}
 .nav-links a:hover{color:var(--gold2);}
-
-/* HERO */
 #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 5%;position:relative;overflow:hidden;}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,134,11,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(184,134,11,.07) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
 .hero-glow{position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(255,215,0,.08) 0%,transparent 70%);pointer-events:none;}
-.badge{display:inline-block;padding:.35rem 1rem;border:1px solid var(--gold1);border-radius:999px;font-size:.8rem;color:var(--gold2);margin-bottom:1.5rem;letter-spacing:.05em;}
+.badge{display:inline-block;padding:.35rem 1rem;border:1px solid transparent;border-radius:999px;font-size:.8rem;color:var(--gold2);margin-bottom:1.5rem;letter-spacing:.05em;position:relative;background-clip:padding-box;}
+.badge::before{content:'';position:absolute;inset:-1px;border-radius:999px;background:conic-gradient(from var(--angle,0deg),transparent 60%,var(--gold2) 80%,transparent 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;padding:1px;opacity:0;}
+.badge.animate-once::before{opacity:1;animation:spinOnce 1.2s linear forwards;}
 h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:700;line-height:1.1;margin-bottom:1rem;}
-h1 span{background:linear-gradient(90deg,var(--gold1),var(--gold2),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% auto;transition:background-position .4s ease;}
-h1 span:hover{animation:shimmerText 1.5s linear 1;}
-@keyframes shimmerText{to{background-position:200% center;}}
+h1 span{background:linear-gradient(90deg,var(--gold1),var(--gold2),var(--gold3),var(--gold1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% auto;}
+h1 span.animate-once{animation:shimmerText 1.5s linear forwards;}
 .subtitle{font-size:clamp(.95rem,2vw,1.2rem);color:var(--gray);max-width:540px;line-height:1.7;margin-bottom:2.5rem;}
 .cta-group{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
 .btn{padding:.8rem 2rem;border-radius:8px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .3s;}
-.btn-primary{background:linear-gradient(135deg,var(--gold1),var(--gold2));color:#000;}
+.btn-primary{background:linear-gradient(90deg,var(--gold1),var(--gold2),var(--gold3),var(--gold1));color:#000;background-size:300% auto;}
+.btn-primary.animate-once{animation:shimmerText 1.2s linear forwards;}
 .btn-primary:hover{transform:translateY(-2px);}
-.btn-outline{background:transparent;border:1px solid var(--gold1);color:var(--gold2);}
+.btn-outline{background:transparent;border:1px solid transparent;color:var(--gold2);position:relative;background-clip:padding-box;}
+.btn-outline::before{content:'';position:absolute;inset:-1px;border-radius:8px;background:conic-gradient(from var(--angle,0deg),transparent 60%,var(--gold2) 80%,transparent 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;padding:1px;opacity:0;}
+.btn-outline.animate-once::before{opacity:1;animation:spinOnce 1.2s linear forwards;}
 .btn-outline:hover{background:rgba(255,215,0,.08);transform:translateY(-2px);}
 .scroll-hint{position:absolute;bottom:2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--gray);font-size:.75rem;}
 .scroll-line{width:1px;height:50px;background:linear-gradient(var(--gold2),transparent);animation:scrollAnim 2s ease-in-out infinite;}
 @keyframes scrollAnim{0%,100%{opacity:.3;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.2);}}
-
-/* SECTIONS */
 section{padding:6rem 5%;}
-.section-label{font-size:.10rem;letter-spacing:.15em;color:var(--gold1);text-transform:uppercase;margin-bottom:.8rem;}
+.section-label{font-size:.8rem;letter-spacing:.15em;color:var(--gold1);text-transform:uppercase;margin-bottom:.8rem;}
 .section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;margin-bottom:1rem;}
 .section-title span{background:linear-gradient(90deg,var(--gold1),var(--gold2),var(--gold3),var(--gold1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% auto;}
-.section-title span:hover{animation:shimmerText 1.5s linear 1;}
+.section-title span.animate-once{animation:shimmerText 1.5s linear forwards;}
 .section-divider{width:60px;height:3px;background:linear-gradient(90deg,var(--gold1),var(--gold2));border-radius:2px;margin-bottom:3rem;}
-
-/* ABOUT */
 #about{background:var(--bg2);}
 .about-grid{display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:center;}
 .about-photo{width:100%;aspect-ratio:1;border-radius:16px;background:var(--bg3);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:var(--gray);font-size:.85rem;position:relative;overflow:hidden;}
@@ -73,10 +67,11 @@ section{padding:6rem 5%;}
 .tag::before{content:'';position:absolute;inset:-1px;border-radius:999px;background:conic-gradient(from var(--angle,0deg),transparent 60%,var(--gold2) 80%,transparent 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;padding:1px;opacity:0;}
 .tag.animate-once::before{opacity:1;animation:spinOnce 1.2s linear forwards;}
 @keyframes spinOnce{from{--angle:0deg;}to{--angle:360deg;}}
-.resume-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.8rem;padding:.7rem 1.6rem;border-radius:8px;background:linear-gradient(135deg,var(--gold1),var(--gold2));color:#000;font-weight:600;font-size:.9rem;text-decoration:none;transition:all .3s;}
+@keyframes shimmerText{from{background-position:0% center;}to{background-position:200% center;}}
+@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
+.resume-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.8rem;padding:.7rem 1.6rem;border-radius:8px;background:linear-gradient(135deg,var(--gold1),var(--gold2));color:#000;font-weight:600;font-size:.9rem;text-decoration:none;transition:all .3s;background-size:200% auto;}
 .resume-btn:hover{opacity:.85;transform:translateY(-2px);}
-
-/* EXPERIENCE */
+.resume-btn.animate-once{animation:shimmerText 1.2s linear forwards;}
 #experience{background:var(--bg);}
 .timeline{position:relative;padding-left:2rem;}
 .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(var(--gold1),var(--gold2),transparent);}
@@ -88,8 +83,6 @@ section{padding:6rem 5%;}
 .timeline-desc{color:var(--gray);font-size:.9rem;line-height:1.7;}
 .timeline-desc li{margin-bottom:.4rem;}
 .timeline-desc ul{padding-left:1.2rem;}
-
-/* PROJECTS */
 #projects{background:var(--bg2);}
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
 .card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:1.8rem;position:relative;overflow:hidden;transition:transform .3s,border-color .3s;}
@@ -102,31 +95,24 @@ section{padding:6rem 5%;}
 .card-tag{padding:.2rem .7rem;border-radius:999px;background:rgba(255,215,0,.08);border:1px solid transparent;font-size:.75rem;color:var(--gold2);position:relative;background-clip:padding-box;}
 .card-tag::before{content:'';position:absolute;inset:-1px;border-radius:999px;background:conic-gradient(from var(--angle,0deg),transparent 60%,var(--gold2) 80%,transparent 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;padding:1px;opacity:0;}
 .card-tag.animate-once::before{opacity:1;animation:spinOnce 1.2s linear forwards;}
-.btn-outline{background:transparent;border:1px solid transparent;color:var(--gold2);position:relative;background-clip:padding-box;}
-.btn-outline::before{content:'';position:absolute;inset:-1px;border-radius:8px;background:conic-gradient(from var(--angle,0deg),transparent 60%,var(--gold2) 80%,transparent 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;padding:1px;opacity:0;}
-.btn-outline.animate-once::before{opacity:1;animation:spinOnce 1.2s linear forwards;}
-.badge{display:inline-block;padding:.35rem 1rem;border:1px solid transparent;border-radius:999px;font-size:.8rem;color:var(--gold2);margin-bottom:1.5rem;letter-spacing:.05em;position:relative;background-clip:padding-box;}
-.badge::before{content:'';position:absolute;inset:-1px;border-radius:999px;background:conic-gradient(from var(--angle,0deg),transparent 60%,var(--gold2) 80%,transparent 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;padding:1px;opacity:0;}
-.badge.animate-once::before{opacity:1;animation:spinOnce 1.2s linear forwards;}
-.resume-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.8rem;padding:.7rem 1.6rem;border-radius:8px;background:linear-gradient(135deg,var(--gold1),var(--gold2));color:#000;font-weight:600;font-size:.9rem;text-decoration:none;transition:all .3s;background-size:200% auto;}
-.resume-btn.animate-once{animation:shimmerText 1.2s linear forwards;}
-.btn-primary{background:linear-gradient(90deg,var(--gold1),var(--gold2),var(--gold3),var(--gold1));color:#000;background-size:300% auto;}
-.btn-primary.animate-once{animation:shimmerText 1.2s linear forwards;}
 .card-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--gold2);text-decoration:none;font-weight:600;transition:gap .2s;}
 .card-link:hover{gap:.7rem;}
-
-/* FOOTER */
 footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 5%;text-align:center;}
 .footer-links{display:flex;justify-content:center;gap:2rem;margin-bottom:1.5rem;flex-wrap:wrap;}
 .footer-links a{color:var(--gray);text-decoration:none;font-size:.9rem;transition:color .3s;}
 .footer-links a:hover{color:var(--gold2);}
 .footer-copy{color:var(--gold1);font-size:.8rem;}
 
-/* FADE IN */
+/* EMAIL COPY BUTTON */
+.email-btn{background:none;border:none;font-family:inherit;font-size:.9rem;color:var(--gray);cursor:pointer;padding:0;position:relative;transition:color .3s;}
+.email-btn:hover{color:var(--gold2);}
+.email-btn.copied{color:var(--gold2);}
+.copied-tooltip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--gold2);color:#000;font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;}
+.copied-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--gold2);}
+.email-btn.copied .copied-tooltip{opacity:1;}
+
 .fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
-
-/* RESPONSIVE */
 @media(max-width:768px){
   .about-grid{grid-template-columns:1fr;}
   .about-photo{max-width:200px;margin:0 auto;}
@@ -136,7 +122,6 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 5%;t
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="logo">&lt;Aaron Neroy | Student/&gt;</div>
   <ul class="nav-links">
@@ -146,7 +131,6 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 5%;t
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
@@ -163,7 +147,6 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 5%;t
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="fade-in">
     <div class="section-label">Who I Am</div>
@@ -178,9 +161,9 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 5%;t
       </div>
     </div>
     <div class="about-text">
-      <p>Hi, I'm <strong style="color:var(--white)">Aaron</strong> placeholder placeholder placeholder placeholder placeholder placeholder .</p>
-      <p>placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder </p>
-      <p>placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder </p>
+      <p>Hi, I'm <strong style="color:var(--white)">Aaron</strong> placeholder placeholder placeholder placeholder placeholder placeholder.</p>
+      <p>placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder</p>
+      <p>placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder</p>
       <div class="about-tags">
         <span class="tag">SQL</span>
         <span class="tag">PostgreSQL</span>
@@ -192,7 +175,6 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 5%;t
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section id="experience">
   <div class="fade-in">
     <div class="section-label">Career</div>
@@ -200,10 +182,9 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 5%;t
     <div class="section-divider"></div>
   </div>
   <div class="timeline fade-in">
-
     <div class="timeline-item">
       <div class="timeline-dot"></div>
-      <div class="timeline-date">JAN 2025 – December 2027   ONGOING</div>
+      <div class="timeline-date">JAN 2025 – DECEMBER 2027 · ONGOING</div>
       <div class="timeline-role">Bachelor of IT, Cybersecurity Major</div>
       <div class="timeline-company">University of Technology Sydney · UTS (Full Time)</div>
       <div class="timeline-desc">
@@ -213,7 +194,6 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 5%;t
         </ul>
       </div>
     </div>
-
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="timeline-date">EXAMPLE MAR 2021 – DEC 2022</div>
@@ -221,12 +201,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 5%;t
       <div class="timeline-company">Company Name · Full-time</div>
       <div class="timeline-desc">
         <ul>
-          <li>Placeholder Placeholder Placeholder Placeholder Placeholder </li>
-          <li>Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder </li>
+          <li>Placeholder Placeholder Placeholder Placeholder Placeholder</li>
+          <li>Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder</li>
         </ul>
       </div>
     </div>
-
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="timeline-date">EXAMPLE JUN 2019 – FEB 2021</div>
@@ -234,16 +213,14 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 5%;t
       <div class="timeline-company">Company Name · Full-time</div>
       <div class="timeline-desc">
         <ul>
-          <li>Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder </li>
-          <li>Placeholder Placeholder Placeholder Placeholder Placeholder </li>
+          <li>Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder</li>
+          <li>Placeholder Placeholder Placeholder Placeholder Placeholder</li>
         </ul>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="fade-in">
     <div class="section-label">My Work</div>
@@ -251,109 +228,100 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 5%;t
     <div class="section-divider"></div>
   </div>
   <div class="projects-grid fade-in">
-
     <div class="card">
       <div class="card-icon">🚀</div>
       <div class="card-title">SaaS Dashboard Platform</div>
       <div class="card-desc">A multi-tenant analytics dashboard with role-based access control, real-time data visualisation, and Stripe billing integration.</div>
       <div class="card-tags">
-        <span class="card-tag">React</span>
-        <span class="card-tag">Node.js</span>
-        <span class="card-tag">PostgreSQL</span>
-        <span class="card-tag">Stripe</span>
+        <span class="card-tag">React</span><span class="card-tag">Node.js</span><span class="card-tag">PostgreSQL</span><span class="card-tag">Stripe</span>
       </div>
       <a href="#" class="card-link">View Project →</a>
     </div>
-
     <div class="card">
       <div class="card-icon">🎨</div>
       <div class="card-title">E-Commerce UI Kit</div>
       <div class="card-desc">A fully responsive, accessible component library built for modern e-commerce stores. Includes 40+ production-ready components.</div>
       <div class="card-tags">
-        <span class="card-tag">TypeScript</span>
-        <span class="card-tag">Tailwind</span>
-        <span class="card-tag">Figma</span>
+        <span class="card-tag">TypeScript</span><span class="card-tag">Tailwind</span><span class="card-tag">Figma</span>
       </div>
       <a href="#" class="card-link">View Project →</a>
     </div>
-
     <div class="card">
       <div class="card-icon">☁️</div>
       <div class="card-title">Cloud Infrastructure Toolkit</div>
       <div class="card-desc">An open-source CLI tool for provisioning and managing AWS resources with one command. Used by 300+ developers on GitHub.</div>
       <div class="card-tags">
-        <span class="card-tag">AWS</span>
-        <span class="card-tag">Python</span>
-        <span class="card-tag">Docker</span>
-        <span class="card-tag">Terraform</span>
+        <span class="card-tag">AWS</span><span class="card-tag">Python</span><span class="card-tag">Docker</span><span class="card-tag">Terraform</span>
       </div>
       <a href="#" class="card-link">View Project →</a>
     </div>
-
     <div class="card">
       <div class="card-icon">🔐</div>
       <div class="card-title">Auth & Identity Service</div>
       <div class="card-desc">A plug-and-play authentication microservice with OAuth2, MFA, and JWT support — designed for rapid SaaS integration.</div>
       <div class="card-tags">
-        <span class="card-tag">OAuth2</span>
-        <span class="card-tag">JWT</span>
-        <span class="card-tag">Redis</span>
-        <span class="card-tag">Express</span>
+        <span class="card-tag">OAuth2</span><span class="card-tag">JWT</span><span class="card-tag">Redis</span><span class="card-tag">Express</span>
       </div>
       <a href="#" class="card-link">View Project →</a>
     </div>
-
     <div class="card">
       <div class="card-icon">📊</div>
       <div class="card-title">Internal Analytics Tool</div>
       <div class="card-desc">Built for a fintech client — a real-time reporting tool pulling from multiple data sources with automated PDF exports.</div>
       <div class="card-tags">
-        <span class="card-tag">Python</span>
-        <span class="card-tag">FastAPI</span>
-        <span class="card-tag">Chart.js</span>
+        <span class="card-tag">Python</span><span class="card-tag">FastAPI</span><span class="card-tag">Chart.js</span>
       </div>
       <a href="#" class="card-link">View Project →</a>
     </div>
-
     <div class="card">
       <div class="card-icon">🌐</div>
       <div class="card-title">Agency Website Redesign</div>
       <div class="card-desc">Full redesign of a digital agency's web presence — boosted page speed score from 42 to 97 and increased conversions by 25%.</div>
       <div class="card-tags">
-        <span class="card-tag">Next.js</span>
-        <span class="card-tag">Framer Motion</span>
-        <span class="card-tag">CMS</span>
+        <span class="card-tag">Next.js</span><span class="card-tag">Framer Motion</span><span class="card-tag">CMS</span>
       </div>
       <a href="#" class="card-link">View Project →</a>
     </div>
-
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-links">
-    <a href="#">LinkedIn(Not yet)</a>
+    <a href="#">LinkedIn (Not yet)</a>
     <a href="https://github.com/AaronNeroy" target="_blank">GitHub</a>
-    <a href="aaron_neroy@yahoo.com.au" target="_blank">Email</a>
+    <button class="email-btn" id="emailBtn" onclick="copyEmail()">
+      Email
+      <span class="copied-tooltip">Copied!</span>
+    </button>
   </div>
   <div class="footer-copy">© 2026 Aaron Neroy · Built with Passion & Carpal Tunnel</div>
 </footer>
 
 <script>
-// Fade-in on scroll
+function copyEmail(){
+  const email = 'aaron_neroy@yahoo.com.au';
+  navigator.clipboard.writeText(email).then(()=>{
+    const btn = document.getElementById('emailBtn');
+    btn.classList.add('copied');
+    btn.childNodes[0].textContent = 'Email ✓ ';
+    setTimeout(()=>{
+      btn.classList.remove('copied');
+      btn.childNodes[0].textContent = 'Email';
+    }, 2000);
+  });
+}
+
 const fadeObs = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
 },{threshold:0.12});
 document.querySelectorAll('.fade-in').forEach(el=>fadeObs.observe(el));
 
-// Animate-once: triggers on enter, resets on exit so it replays on re-entry
 const animEls = '.tag,.card-tag,.badge,.btn-outline,.btn-primary,.resume-btn,h1 span,.section-title span';
 const animObs = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       e.target.classList.remove('animate-once');
-      void e.target.offsetWidth; // force reflow to restart animation
+      void e.target.offsetWidth;
       e.target.classList.add('animate-once');
     } else {
       e.target.classList.remove('animate-once');
