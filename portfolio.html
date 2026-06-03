@@ -19,7 +19,7 @@
   --border:#222;
 }
 html{scroll-behavior:smooth;}
-body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;background-image:radial-gradient(rgba(224,170,62,.08) 1px,transparent 1px);background-size:28px 28px;}
 ::-webkit-scrollbar{width:6px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold1),var(--gold2));border-radius:3px;}
@@ -69,14 +69,15 @@ section{padding:6rem 5%;}
 @keyframes spinOnce{from{--angle:0deg;}to{--angle:360deg;}}
 @keyframes shimmerText{from{background-position:0% center;}to{background-position:200% center;}}
 @property --angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
-.resume-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.8rem;padding:.7rem 1.6rem;border-radius:8px;background:linear-gradient(135deg,var(--gold1),var(--gold2));color:#000;font-weight:600;font-size:.9rem;text-decoration:none;transition:all .3s;background-size:200% auto;}
-.resume-btn:hover{opacity:.85;transform:translateY(-2px);}
-.resume-btn.animate-once{animation:shimmerText 1.2s linear forwards;}
+.resume-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.8rem;padding:.7rem 1.6rem;border-radius:8px;background:transparent;border:1px solid transparent;color:var(--gold2);font-weight:600;font-size:.9rem;text-decoration:none;transition:all .3s;position:relative;background-clip:padding-box;}
+.resume-btn::before{content:'';position:absolute;inset:-1px;border-radius:8px;background:conic-gradient(from var(--angle,0deg),transparent 60%,var(--gold2) 80%,transparent 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;padding:1px;opacity:0;}
+.resume-btn.animate-once::before{opacity:1;animation:spinOnce 1.2s linear forwards;}
+.resume-btn:hover{background:rgba(255,215,0,.08);transform:translateY(-2px);}
 #experience{background:var(--bg);}
 .timeline{position:relative;padding-left:2rem;}
 .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(var(--gold1),var(--gold2),transparent);}
 .timeline-item{position:relative;margin-bottom:3rem;padding-left:2rem;}
-.timeline-dot{position:absolute;left:-2.45rem;top:.3rem;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--gold1),var(--gold2));box-shadow:0 0 12px rgba(255,215,0,.4);}
+.timeline-dot{position:absolute;left:-1.5rem;top:.3rem;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--gold1),var(--gold2));box-shadow:0 0 12px rgba(255,215,0,.4);}
 .timeline-date{font-size:.8rem;color:var(--gold1);letter-spacing:.05em;margin-bottom:.4rem;}
 .timeline-role{font-size:1.15rem;font-weight:700;margin-bottom:.2rem;}
 .timeline-company{font-size:.9rem;color:var(--gold2);margin-bottom:.8rem;}
@@ -170,7 +171,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 5%;t
         <span class="tag">Python</span>
         <span class="tag">Docker</span>
       </div>
-      <a href="#" class="btn btn-outline">⬇ Download Resume (not linked)</a>
+      <a href="#" class="resume-btn">⬇ Download Resume (not linked)</a>
     </div>
   </div>
 </section>
